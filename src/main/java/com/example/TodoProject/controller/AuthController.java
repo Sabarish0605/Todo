@@ -13,26 +13,28 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/auth")
 public class AuthController {
 
 
     private final GenericResponseService responseBuilder;
-    private UserRepository userRepository;
-    private UserService userService;
-    private PasswordEncoder passwordEncoder;
-    private JwtUtils jwtUtils;
+    private final UserRepository userRepository;
+    private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtUtils jwtUtils;
 
 
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody Map<String,String> body){
         String email = body.get("email");
-        String password = body.get("password");
+        String password = passwordEncoder.encode(body.get("password"));
 
         if(userRepository.findByEmail(email).isPresent()){
             return new ResponseEntity<>("Email allready present",HttpStatus.CONFLICT);
