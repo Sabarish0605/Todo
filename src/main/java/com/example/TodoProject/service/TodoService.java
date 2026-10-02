@@ -16,7 +16,8 @@ public class TodoService {
     @Autowired
     private TodoRepository todoRepository;
 
-    public Todo createTodo(Todo todo){
+    public Todo createTodo(Todo todo, String userEmail){
+        todo.setUserEmail(userEmail);
         return todoRepository.save(todo);
     }
 
@@ -26,6 +27,10 @@ public class TodoService {
 
     public List<Todo> getTodos(){
         return todoRepository.findAll();
+    }
+
+    public List<Todo> getTodosByUser(String userEmail){
+        return todoRepository.findByUserEmail(userEmail);
     }
 //    Update todo
     public Todo updateTodo(Todo todo){

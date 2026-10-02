@@ -12,7 +12,7 @@ import java.util.Date;
 @Component
 public class JwtUtils {
     private final String SECRET = "Building the todo api project with the help of the Code io youtube channel";
-    private final long EXPIRATION = 1000*60;
+    private final long EXPIRATION = 1000*60*60*24; // 24 hours
     private final Key secretkey = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
 
     public String generateToken(String email){

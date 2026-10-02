@@ -6,7 +6,6 @@ import com.example.TodoProject.service.UserService;
 import com.example.TodoProject.utils.JwtUtils;
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
-import org.springdoc.core.service.GenericResponseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +22,6 @@ import java.util.Map;
 @RequestMapping("/auth")
 public class AuthController {
 
-
-    private final GenericResponseService responseBuilder;
     private final UserRepository userRepository;
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;

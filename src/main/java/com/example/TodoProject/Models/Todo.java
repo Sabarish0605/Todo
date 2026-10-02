@@ -15,6 +15,8 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String userEmail; // Associates this todo with the owning user
+
     private String title;
     private String description;
     private boolean completed;
